@@ -1,0 +1,205 @@
+{
+  "version": "1.0.0",
+  "created": "2026-04-02T00:42:00+08:00",
+  "rules": [
+    {
+      "id": "rule-p0-guardian-down",
+      "name": "Guardian 守护进程宕机",
+      "priority": "P0",
+      "severity": "critical",
+      "emoji": "🔴",
+      "condition": {
+        "target": "guardian",
+        "type": "process_exists",
+        "operator": "equals",
+        "value": false
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "guardian_critical" },
+        { "type": "log", "level": "ERROR" },
+        { "type": "retry", "count": 3, "interval": 30 }
+      ],
+      "cooldown": 300,
+      "enabled": true
+    },
+    {
+      "id": "rule-p1-agent-failed",
+      "name": "内容 Agent 执行失败",
+      "priority": "P1",
+      "severity": "high",
+      "emoji": "🟠",
+      "condition": {
+        "target": "content_agents",
+        "type": "health_check",
+        "operator": "equals",
+        "value": false
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "agent_failed" },
+        { "type": "log", "level": "ERROR" }
+      ],
+      "cooldown": 600,
+      "enabled": true
+    },
+    {
+      "id": "rule-p1-auto-upgrade-failed",
+      "name": "自升级系统失败",
+      "priority": "P1",
+      "severity": "high",
+      "emoji": "🟠",
+      "condition": {
+        "target": "auto_upgrade",
+        "type": "last_run_status",
+        "operator": "equals",
+        "value": "failed"
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "upgrade_failed" },
+        { "type": "log", "level": "ERROR" }
+      ],
+      "cooldown": 1800,
+      "enabled": true
+    },
+    {
+      "id": "rule-p2-publish-failed",
+      "name": "发布成功率低于阈值",
+      "priority": "P2",
+      "severity": "medium",
+      "emoji": "🟡",
+      "condition": {
+        "target": "publish_system",
+        "type": "success_rate",
+        "operator": "less_than",
+        "value": 0.95
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "publish_warning" },
+        { "type": "log", "level": "WARNING" }
+      ],
+      "cooldown": 3600,
+      "enabled": true
+    },
+    {
+      "id": "rule-p2-data-tracking-issue",
+      "name": "数据追踪系统异常",
+      "priority": "P2",
+      "severity": "medium",
+      "emoji": "🟡",
+      "condition": {
+        "target": "data_tracking",
+        "type": "data_flow",
+        "operator": "equals",
+        "value": "interrupted"
+      },
+      "actions": [
+        { "type": "notify", "channel": "log", "template": "data_tracking_warning" },
+        { "type": "log", "level": "WARNING" }
+      ],
+      "cooldown": 1800,
+      "enabled": true
+    },
+    {
+      "id": "rule-p2-cpu-high",
+      "name": "CPU 使用率过高",
+      "priority": "P2",
+      "severity": "medium",
+      "emoji": "🟡",
+      "condition": {
+        "target": "resources.cpu",
+        "type": "usage",
+        "operator": "greater_than",
+        "value": 90
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "resource_warning" },
+        { "type": "log", "level": "WARNING" }
+      ],
+      "cooldown": 1800,
+      "enabled": true
+    },
+    {
+      "id": "rule-p2-memory-high",
+      "name": "内存使用率过高",
+      "priority": "P2",
+      "severity": "medium",
+      "emoji": "🟡",
+      "condition": {
+        "target": "resources.memory",
+        "type": "usage",
+        "operator": "greater_than",
+        "value": 95
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "resource_warning" },
+        { "type": "log", "level": "WARNING" }
+      ],
+      "cooldown": 1800,
+      "enabled": true
+    },
+    {
+      "id": "rule-p2-disk-high",
+      "name": "磁盘空间不足",
+      "priority": "P2",
+      "severity": "medium",
+      "emoji": "🟡",
+      "condition": {
+        "target": "resources.disk",
+        "type": "usage",
+        "operator": "greater_than",
+        "value": 95
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "disk_warning" },
+        { "type": "log", "level": "WARNING" }
+      ],
+      "cooldown": 3600,
+      "enabled": true
+    },
+    {
+      "id": "rule-p3-daily-report",
+      "name": "每日状态报告",
+      "priority": "P3",
+      "severity": "info",
+      "emoji": "🟢",
+      "condition": {
+        "type": "schedule",
+        "cron": "0 9 * * *"
+      },
+      "actions": [
+        { "type": "notify", "channel": "telegram", "template": "daily_report" },
+        { "type": "log", "level": "INFO" },
+        { "type": "generate_report" }
+      ],
+      "cooldown": 86400,
+      "enabled": true
+    },
+    {
+      "id": "rule-p3-task-success-rate",
+      "name": "任务执行成功率低",
+      "priority": "P3",
+      "severity": "info",
+      "emoji": "🟢",
+      "condition": {
+        "target": "metrics.task_success_rate",
+        "type": "success_rate",
+        "operator": "less_than",
+        "value": 0.90
+      },
+      "actions": [
+        { "type": "log", "level": "INFO" }
+      ],
+      "cooldown": 3600,
+      "enabled": true
+    }
+  ],
+  "templates": {
+    "guardian_critical": "🔴 *P0 严重告警* - Guardian 守护进程宕机\n\n时间：{{timestamp}}\n状态：进程不存在\n\n请立即检查系统状态！",
+    "agent_failed": "🟠 *P1 重要告警* - 内容 Agent 执行失败\n\n时间：{{timestamp}}\nAgent: {{agent_name}}\n错误：{{error_message}}\n\n请检查 Agent 运行状态。",
+    "upgrade_failed": "🟠 *P1 重要告警* - 自升级系统失败\n\n时间：{{timestamp}}\n版本：{{target_version}}\n错误：{{error_message}}\n\n请检查升级日志。",
+    "publish_warning": "🟡 *P2 警告* - 发布成功率低于阈值\n\n时间：{{timestamp}}\n当前成功率：{{success_rate}}%\n阈值：95%\n\n请检查发布系统状态。",
+    "data_tracking_warning": "🟡 *P2 警告* - 数据追踪系统异常\n\n时间：{{timestamp}}\n状态：{{status}}\n\n请检查数据流状态。",
+    "resource_warning": "🟡 *P2 警告* - 资源使用率过高\n\n时间：{{timestamp}}\n资源类型：{{resource_type}}\n使用率：{{usage}}%\n\n请关注系统资源。",
+    "disk_warning": "🟡 *P2 警告* - 磁盘空间不足\n\n时间：{{timestamp}}\n路径：{{path}}\n使用率：{{usage}}%\n\n请清理磁盘空间。",
+    "daily_report": "🟢 *P3 每日状态报告*\n\n时间：{{timestamp}}\n\n{{report_content}}\n\n---\n系统运行正常。"
+  }
+}

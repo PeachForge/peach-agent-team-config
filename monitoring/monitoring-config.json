@@ -1,0 +1,135 @@
+{
+  "version": "1.0.0",
+  "created": "2026-04-02T00:42:00+08:00",
+  "monitoring": {
+    "interval": {
+      "quick": 60,
+      "standard": 300,
+      "daily": 86400
+    },
+    "retention": {
+      "logs": 30,
+      "reports": 90
+    }
+  },
+  "targets": {
+    "guardian": {
+      "name": "Guardian 守护进程",
+      "type": "process",
+      "check": "process_exists",
+      "process_name": "guardian",
+      "priority": "P0",
+      "enabled": true
+    },
+    "content_agents": {
+      "name": "内容 Agent 团队",
+      "type": "group",
+      "priority": "P1",
+      "enabled": true,
+      "agents": [
+        { "id": "agent-1", "name": "微博发布 Agent", "check": "health_endpoint" },
+        { "id": "agent-2", "name": "小红书发布 Agent", "check": "health_endpoint" },
+        { "id": "agent-3", "name": "内容生成 Agent", "check": "health_endpoint" },
+        { "id": "agent-4", "name": "数据分析 Agent", "check": "health_endpoint" },
+        { "id": "agent-5", "name": "用户交互 Agent", "check": "health_endpoint" },
+        { "id": "agent-6", "name": "自动升级 Agent", "check": "health_endpoint" }
+      ]
+    },
+    "auto_upgrade": {
+      "name": "自升级系统",
+      "type": "service",
+      "check": "last_run_status",
+      "priority": "P1",
+      "enabled": true
+    },
+    "config_system": {
+      "name": "配置管理系统",
+      "type": "service",
+      "check": "config_valid",
+      "priority": "P1",
+      "enabled": true
+    },
+    "telegram_channel": {
+      "name": "Telegram 渠道",
+      "type": "api",
+      "check": "api_health",
+      "endpoint": "https://api.telegram.org/botXXX/getMe",
+      "priority": "P1",
+      "enabled": true
+    },
+    "publish_system": {
+      "name": "微博/小红书发布系统",
+      "type": "service",
+      "check": "publish_success_rate",
+      "threshold": 0.95,
+      "priority": "P2",
+      "enabled": true
+    },
+    "data_tracking": {
+      "name": "数据追踪系统",
+      "type": "service",
+      "check": "data_flow_status",
+      "priority": "P2",
+      "enabled": true
+    }
+  },
+  "resources": {
+    "cpu": {
+      "warning": 70,
+      "critical": 90,
+      "unit": "percent"
+    },
+    "memory": {
+      "warning": 75,
+      "critical": 95,
+      "unit": "percent"
+    },
+    "disk": {
+      "warning": 80,
+      "critical": 95,
+      "unit": "percent",
+      "paths": ["/", "/Users"]
+    }
+  },
+  "alerts": {
+    "channels": {
+      "telegram": {
+        "enabled": true,
+        "recipient": "peter",
+        "chat_id": "6869363927"
+      },
+      "log": {
+        "enabled": true,
+        "path": "/Users/peter_us/OneDrive/Peach-Workspace/monitoring/logs/monitoring.log"
+      },
+      "email": {
+        "enabled": false,
+        "recipient": ""
+      }
+    },
+    "escalation": {
+      "P0": { "immediate": true, "channels": ["telegram", "log"] },
+      "P1": { "immediate": true, "channels": ["telegram", "log"] },
+      "P2": { "immediate": false, "batch": true, "channels": ["log"] },
+      "P3": { "immediate": false, "daily_digest": true, "channels": ["log"] }
+    }
+  },
+  "metrics": {
+    "task_success_rate": {
+      "window": 3600,
+      "threshold": 0.90
+    },
+    "publish_success_rate": {
+      "window": 3600,
+      "threshold": 0.95
+    },
+    "api_call_success_rate": {
+      "window": 3600,
+      "threshold": 0.98
+    },
+    "error_log_count": {
+      "window": 3600,
+      "threshold": 10
+    }
+  }
+}

@@ -1,0 +1,55 @@
+[2026-04-02 00:42:00] [INFO] ==========================================
+[2026-04-02 00:42:00] [INFO] 系统自升级架构初始化
+[2026-04-02 00:42:00] [INFO] ==========================================
+[2026-04-02 00:42:00] [INFO] 创建升级脚本...
+[2026-04-02 00:42:01] [SUCCESS] 创建 upgrade-manager.sh
+[2026-04-02 00:42:02] [SUCCESS] 创建 version-checker.sh
+[2026-04-02 00:42:03] [SUCCESS] 创建 backup-manager.sh
+[2026-04-02 00:42:04] [SUCCESS] 创建 rollback-manager.sh
+[2026-04-02 00:42:05] [SUCCESS] 创建 config-migrator.sh
+[2026-04-02 00:42:06] [SUCCESS] 创建 health-checker.sh
+[2026-04-02 00:42:07] [INFO] 创建版本历史...
+[2026-04-02 00:42:07] [SUCCESS] 创建 version-history.md
+[2026-04-02 00:42:08] [INFO] 初始化日志系统...
+[2026-04-02 00:42:08] [SUCCESS] 日志系统就绪
+[2026-04-02 00:42:09] [INFO] ==========================================
+[2026-04-02 00:42:09] [SUCCESS] 系统自升级架构创建完成
+[2026-04-02 00:42:09] [INFO] 版本：v0.1.0
+[2026-04-02 00:42:09] [INFO] ==========================================
+[2026-04-02 00:46:02] [HEALTH] [INFO] ==========================================
+[2026-04-02 00:46:02] [HEALTH] [INFO] 开始健康检查
+[2026-04-02 00:46:02] [HEALTH] [INFO] ==========================================
+[2026-04-02 00:46:02] [HEALTH] [INFO] 检查：file_integrity
+[2026-04-02 00:46:02] [HEALTH] [ERROR] 缺少关键文件：AGENTS.md
+[2026-04-02 00:46:02] [HEALTH] [ERROR] ✗ file_integrity 失败
+[2026-04-02 00:46:02] [HEALTH] [INFO] 检查：config_valid
+[2026-04-02 00:46:02] [HEALTH] [SUCCESS] ✓ config_valid 通过
+[2026-04-02 00:46:02] [HEALTH] [INFO] 检查：skills_loaded
+[2026-04-02 00:46:02] [HEALTH] [WARN] 技能目录不存在
+[2026-04-02 00:46:02] [HEALTH] [SUCCESS] ✓ skills_loaded 通过
+[2026-04-02 00:46:02] [HEALTH] [INFO] 检查：git_status
+[2026-04-02 00:46:02] [HEALTH] [INFO] 非 Git 仓库，跳过 Git 检查
+[2026-04-02 00:46:02] [HEALTH] [SUCCESS] ✓ git_status 通过
+[2026-04-02 00:46:02] [HEALTH] [INFO] 检查：permissions
+[2026-04-02 00:46:02] [HEALTH] [SUCCESS] ✓ permissions 通过
+[2026-04-02 00:46:02] [HEALTH] [INFO] 检查：disk_space
+[2026-04-02 00:46:02] [HEALTH] [INFO] 磁盘空间充足：396360MB
+[2026-04-02 00:46:02] [HEALTH] [SUCCESS] ✓ disk_space 通过
+[2026-04-02 00:46:02] [HEALTH] [INFO] 健康报告：/Users/peter_us/OneDrive/Peach-Workspace/system/logs/health_report_20260402_004602.md
+[2026-04-02 00:46:02] [HEALTH] [INFO] ==========================================
+[2026-04-02 00:46:02] [HEALTH] [INFO] 健康检查完成
+[2026-04-02 00:46:02] [HEALTH] [INFO] 总计：6, 通过：5, 失败：1
+[2026-04-02 00:46:02] [HEALTH] [INFO] ==========================================
+[2026-04-02 00:46:02] [HEALTH] [WARN] 1 个检查失败
+[2026-04-02 00:46:13] [BACKUP] [INFO] 开始创建备份：backup_v0.1.0_20260402_004613
+[2026-04-02 00:46:13] [BACKUP] [INFO] 备份：system/auto-upgrade
+[2026-04-02 00:46:13] [BACKUP] [INFO] 备份：system/versions
+[2026-04-02 00:46:13] [BACKUP] [INFO] 备份：.version
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: .openclawrc
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: AGENTS.md
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: SOUL.md
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: USER.md
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: TOOLS.md
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: skills
+[2026-04-02 00:46:13] [BACKUP] [WARN] 跳过（不存在）: memory
+[2026-04-02 00:46:13] [BACKUP] [SUCCESS] 备份创建完成：backup_v0.1.0_20260402_004613

@@ -1,0 +1,8 @@
+# Model Usage Log
+# Format: TIMESTAMP | MODEL_ID | TASK_TYPE | TOKENS_IN | TOKENS_OUT | COST | LATENCY_MS | STATUS | NOTES
+# Created: 2026-04-02T00:43:00+08:00
+# System initialized - awaiting first model usage
+
+2026-04-02T00:43:00+08:00 | SYSTEM | INIT | 0 | 0 | 0.0000 | 0 | SUCCESS | Model registry initialized with 12 models
+2026-04-02T00:43:00+08:00 | SYSTEM | CONFIG | 0 | 0 | 0.0000 | 0 | SUCCESS | Routing rules configured
+2026-04-02T00:43:00+08:00 | SYSTEM | DASHBOARD | 0 | 0 | 0.0000 | 0 | SUCCESS | Usage dashboard created

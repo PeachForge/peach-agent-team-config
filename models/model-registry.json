@@ -1,0 +1,200 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-02T00:43:00+08:00",
+  "providers": {
+    "aliyun-bailian": {
+      "name": "阿里百炼 CodingPlan",
+      "status": "active",
+      "models": {
+        "qwen3.5-plus": {
+          "id": "qwen3.5-plus",
+          "name": "Qwen 3.5 Plus",
+          "provider": "aliyun-bailian",
+          "capabilities": ["general", "coding", "reasoning"],
+          "contextWindow": 32768,
+          "tier": "premium",
+          "costPer1kTokens": {
+            "input": 0.004,
+            "output": 0.012
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 10
+        },
+        "qwen3-coder-plus": {
+          "id": "qwen3-coder-plus",
+          "name": "Qwen 3 Coder Plus",
+          "provider": "aliyun-bailian",
+          "capabilities": ["coding", "debugging", "code-review"],
+          "contextWindow": 32768,
+          "tier": "premium",
+          "costPer1kTokens": {
+            "input": 0.005,
+            "output": 0.015
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 10
+        },
+        "kimi-k2.5": {
+          "id": "kimi-k2.5",
+          "name": "Kimi K2.5",
+          "provider": "aliyun-bailian",
+          "capabilities": ["creative", "writing", "general"],
+          "contextWindow": 128000,
+          "tier": "premium",
+          "costPer1kTokens": {
+            "input": 0.006,
+            "output": 0.018
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 8
+        },
+        "glm-5": {
+          "id": "glm-5",
+          "name": "GLM-5",
+          "provider": "aliyun-bailian",
+          "capabilities": ["analysis", "data", "reasoning"],
+          "contextWindow": 32768,
+          "tier": "premium",
+          "costPer1kTokens": {
+            "input": 0.004,
+            "output": 0.012
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 10
+        },
+        "MiniMax-M2.5": {
+          "id": "MiniMax-M2.5",
+          "name": "MiniMax M2.5",
+          "provider": "aliyun-bailian",
+          "capabilities": ["general", "multimodal", "reasoning"],
+          "contextWindow": 32768,
+          "tier": "premium",
+          "costPer1kTokens": {
+            "input": 0.005,
+            "output": 0.015
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 8
+        },
+        "qwen3-max-2026-01-23": {
+          "id": "qwen3-max-2026-01-23",
+          "name": "Qwen 3 Max",
+          "provider": "aliyun-bailian",
+          "capabilities": ["complex-reasoning", "long-context", "premium"],
+          "contextWindow": 256000,
+          "tier": "ultra",
+          "costPer1kTokens": {
+            "input": 0.01,
+            "output": 0.03
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 5
+        }
+      }
+    },
+    "volcengine": {
+      "name": "火山引擎 CodingPlan",
+      "status": "active",
+      "models": {
+        "doubao-seed-1-8-251228": {
+          "id": "doubao-seed-1-8-251228",
+          "name": "Doubao Seed 1.8",
+          "provider": "volcengine",
+          "capabilities": ["tutorial", "education", "general"],
+          "contextWindow": 32768,
+          "tier": "standard",
+          "costPer1kTokens": {
+            "input": 0.002,
+            "output": 0.006
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 15
+        },
+        "doubao-seed-2.0-code-251215": {
+          "id": "doubao-seed-2.0-code-251215",
+          "name": "Doubao Seed 2.0 Code",
+          "provider": "volcengine",
+          "capabilities": ["coding", "debugging", "optimization"],
+          "contextWindow": 32768,
+          "tier": "premium",
+          "costPer1kTokens": {
+            "input": 0.003,
+            "output": 0.009
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 12
+        },
+        "doubao-pro-32k-251215": {
+          "id": "doubao-pro-32k-251215",
+          "name": "Doubao Pro 32K",
+          "provider": "volcengine",
+          "capabilities": ["general", "long-context", "balanced"],
+          "contextWindow": 32768,
+          "tier": "standard",
+          "costPer1kTokens": {
+            "input": 0.002,
+            "output": 0.006
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 15
+        },
+        "doubao-pro-4k-251215": {
+          "id": "doubao-pro-4k-251215",
+          "name": "Doubao Pro 4K",
+          "provider": "volcengine",
+          "capabilities": ["general", "fast", "balanced"],
+          "contextWindow": 4096,
+          "tier": "standard",
+          "costPer1kTokens": {
+            "input": 0.0015,
+            "output": 0.0045
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 20
+        },
+        "doubao-lite-32k-251215": {
+          "id": "doubao-lite-32k-251215",
+          "name": "Doubao Lite 32K",
+          "provider": "volcengine",
+          "capabilities": ["general", "cost-effective"],
+          "contextWindow": 32768,
+          "tier": "economy",
+          "costPer1kTokens": {
+            "input": 0.0008,
+            "output": 0.0024
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 25
+        },
+        "doubao-lite-4k-251215": {
+          "id": "doubao-lite-4k-251215",
+          "name": "Doubao Lite 4K",
+          "provider": "volcengine",
+          "capabilities": ["fast", "simple-tasks", "cost-effective"],
+          "contextWindow": 4096,
+          "tier": "economy",
+          "costPer1kTokens": {
+            "input": 0.0005,
+            "output": 0.0015
+          },
+          "status": "active",
+          "load": 0,
+          "maxConcurrent": 30
+        }
+      }
+    }
+  },
+  "totalModels": 12,
+  "activeModels": 12
+}

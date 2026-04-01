@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-04-02T00:46:02+08:00",
+  "summary": {
+    "total": 6,
+    "passed": 5,
+    "failed": 1
+  },
+  "checks": {
+    "file_integrity": "failed","config_valid": "passed","skills_loaded": "passed","git_status": "passed","permissions": "passed","disk_space": "passed"
+  },
+  "status": "unhealthy"
+}

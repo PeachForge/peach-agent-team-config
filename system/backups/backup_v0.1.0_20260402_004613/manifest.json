@@ -1,0 +1,10 @@
+{
+  "backup_id": "backup_v0.1.0_20260402_004613",
+  "version": "v0.1.0",
+  "timestamp": "2026-04-02T00:46:13+08:00",
+  "items": [
+    "system/auto-upgrade",
+    "system/versions",
+    ".version"
+  ]
+}
