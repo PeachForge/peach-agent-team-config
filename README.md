@@ -88,7 +88,7 @@ A team of **10 specialized AI agents** that work together to:
 
 ## 📬 Contact
 
-- 📧 Email: contact@peachforge.dev
+- 📧 Email: obeliskclubclub@gmail.com
 
 ---
 
